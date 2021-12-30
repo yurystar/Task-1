@@ -5,9 +5,9 @@ public class Task3_1 {
     public static void main(String[] args) {
         Task3_1Service inst = new Task3_1Service();
 
-        int a = inst.getRandomNumber(999);
-        int b = inst.getRandomNumber(999);
-        int c = inst.getRandomNumber(999);
+        int a = inst.getRandomNumber(900)+100;
+        int b = inst.getRandomNumber(900)+100;
+        int c = inst.getRandomNumber(900)+100;
 
         System.out.println("Задача 1");
         inst.showMaxDigitOfNum(a);
