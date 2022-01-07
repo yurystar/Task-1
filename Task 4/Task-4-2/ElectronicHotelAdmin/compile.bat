@@ -1,1 +1,0 @@
-javac -d bin -sourcepath src src/com/senla/elhoteladmin/Main.java
