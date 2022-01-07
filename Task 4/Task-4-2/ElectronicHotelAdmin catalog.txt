@@ -1,0 +1,19 @@
+├── Task-4
+│   └── ElectronicHotelAdmin
+│       ├── electronicHotelAdminRun.bat
+│       ├── src
+│       │   ├── com
+│       │   │   └── senla
+│       │   │       └── elhoteladmin
+│       │   │           ├── controller
+│       │   │           │   └── *.java
+│       │   │           ├── dao
+│       │   │           │   └── *.java
+│       │   │           ├── entity
+│       │   │           │   └── *.java
+│       │   │           ├── Main.java
+│       │   │           └── service
+│       │   │               └── *.java
+│       │   └── META-INF
+│       │       └── MANIFEST.MF
+│       └── electronicHotelAdminRun.jar
