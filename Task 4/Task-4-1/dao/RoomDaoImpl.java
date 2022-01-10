@@ -42,48 +42,48 @@ public class RoomDaoImpl implements IRoomRepo {
     }
 
     @Override
-    public List<Room> getHotelRoomsSortedByRoomPlaces() {
+    public List<Room> getHotelRoomsSortedList(Comparator<Room> comparing) {
         return rooms.stream()
-                .sorted(Comparator.comparingInt(Room::getRoomPlaces))
+                .sorted(comparing)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Room> getHotelRoomsSortedByRoomPlaces() {
+        return getHotelRoomsSortedList(Comparator.comparingInt(Room::getRoomPlaces));
     }
 
     @Override
     public List<Room> getHotelRoomsSortedByRoomPrice() {
-        return rooms.stream()
-                .sorted(Comparator.comparingInt(Room::getRoomPrice))
-                .collect(Collectors.toList());
+        return getHotelRoomsSortedList(Comparator.comparingInt(Room::getRoomPrice));
     }
 
     @Override
     public List<Room> getHotelRoomsSortedByRoomType() {
+        return getHotelRoomsSortedList(Comparator.comparing(Room::getRoomType));
+    }
+
+    @Override
+    public List<Room> getEmptyHotelRoomsSortedList(Comparator<Room> comparing) {
         return rooms.stream()
-                .sorted(Comparator.comparing(Room::getRoomType))
+                .filter(room -> room.getRoomStatus().equals(RoomStatus.EMPTY))
+                .sorted(comparing)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Room> getEmptyHotelRoomsSortedByRoomPlaces() {
-        return rooms.stream()
-                .filter(room -> room.getRoomStatus().equals(RoomStatus.EMPTY))
-                .sorted(Comparator.comparingInt(Room::getRoomPlaces))
-                .collect(Collectors.toList());
+        return getEmptyHotelRoomsSortedList(Comparator.comparing(Room::getRoomPlaces));
     }
 
     @Override
     public List<Room> getEmptyHotelRoomsSortedByRoomPrice() {
-        return rooms.stream()
-                .filter(room -> room.getRoomStatus().equals(RoomStatus.EMPTY))
-                .sorted(Comparator.comparingInt(Room::getRoomPrice))
-                .collect(Collectors.toList());
+        return getEmptyHotelRoomsSortedList(Comparator.comparingInt(Room::getRoomPrice));
     }
 
     @Override
     public List<Room> getEmptyHotelRoomsSortedByRoomType() {
-        return rooms.stream()
-                .filter(room -> room.getRoomStatus().equals(RoomStatus.EMPTY))
-                .sorted(Comparator.comparing(Room::getRoomType))
-                .collect(Collectors.toList());
+        return getEmptyHotelRoomsSortedList(Comparator.comparing(Room::getRoomType));
     }
 
     @Override
