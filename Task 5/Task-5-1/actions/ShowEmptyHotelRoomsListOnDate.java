@@ -1,19 +1,15 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.controller.AdminControllerSingleton;
-import consoleuserinterface.ScannerUtil;
-
-import java.time.LocalDate;
+import consoleuserinterface.ScanUtil;
 
 public class ShowEmptyHotelRoomsListOnDate implements IAction {
-    AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
+    private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
 
     @Override
     public void execute() {
-        ScannerUtil scannerUtil = new ScannerUtil();
-        System.out.println("Введите дату - ");
-        System.out.println(adminControllerSingleton.getEmptyHotelRoomsListOnDate
-                (LocalDate.of(LocalDate.now().getYear(), scannerUtil.getDateMonth(), scannerUtil.getDateDate())));
+        System.out.println("Введите дату для просмотра свободных номеров - ");
+        System.out.println(adminControllerSingleton.getEmptyHotelRoomsListOnDate(ScanUtil.getDate()));
         System.out.println();
     }
 }

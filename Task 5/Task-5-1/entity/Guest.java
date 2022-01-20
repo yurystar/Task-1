@@ -1,8 +1,11 @@
 package com.senla.elhoteladmin.entity;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Guest {
+public class Guest implements Serializable {
+    private static final long serialVersionUID = 3L;
+
     private Integer guestID;
     private Integer guestPassport;
     private String guestName;

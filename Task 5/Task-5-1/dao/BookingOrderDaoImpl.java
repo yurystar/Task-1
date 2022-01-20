@@ -1,6 +1,5 @@
 package com.senla.elhoteladmin.dao;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.entity.*;
 
 import java.time.LocalDate;
@@ -17,15 +16,14 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
         return instance;
     }
 
-    private final List<BookingOrder> bookingOrders = new ArrayList<>();
+    private List<BookingOrder> bookingOrders = new ArrayList<>();
 
     @Override
     public BookingOrder get(Integer bookingOrderID) throws ArrayIndexOutOfBoundsException {
-        BookingOrder order = null;
-        if (bookingOrderID > 0 && bookingOrderID < bookingOrders.size()) {
-            order = bookingOrders.get(bookingOrderID);
-        }
-        return order;
+        return bookingOrders.stream()
+                .filter(bookingOrder -> bookingOrder.getOrderID().equals(bookingOrderID))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -94,5 +92,10 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
             }
         }
         return list;
+    }
+
+    @Override
+    public void deserializeListBookingOrder(List<BookingOrder> list) {
+        BookingOrderDaoImpl.getInstance().bookingOrders = new ArrayList<>(list);
     }
 }

@@ -1,6 +1,5 @@
 package com.senla.elhoteladmin.service;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
 import com.senla.elhoteladmin.dao.IAdditionalServiceRepo;
 import com.senla.elhoteladmin.entity.AdditionalService;
@@ -46,5 +45,10 @@ public class AdditionalServiceService implements IAdditionalServiceService {
     @Override
     public AdditionalService getAdditionalServiceByID(Integer serviceID) {
         return additionalServiceRepo.get(serviceID);
+    }
+
+    @Override
+    public void deserializeListAddServ(List<AdditionalService> list) {
+        additionalServiceRepo.deserializeListAddServ(list);
     }
 }

@@ -2,25 +2,24 @@ package consoleuserinterface;
 
 import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.entity.RoomType;
+import com.senla.elhoteladmin.serialization.Deserialization;
+import com.senla.elhoteladmin.serialization.Serialization;
 import consoleuserinterface.userservice.MenuController;
+
+import java.io.IOException;
 
 public class MainUI {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         MenuController menuController = new MenuController();
         AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
 
-        adminControllerSingleton.createNewRoom(1, 1, RoomType.STARS_3, 5, 6000);
-        adminControllerSingleton.createNewRoom(2, 2, RoomType.STARS_2, 4, 2700);
-        adminControllerSingleton.createNewRoom(3, 3, RoomType.STARS_2, 2, 2000);
-        adminControllerSingleton.createNewRoom(4, 4, RoomType.STARS_3, 2, 3500);
-        adminControllerSingleton.createNewRoom(5, 5, RoomType.STARS_4, 3, 5600);
-
-        adminControllerSingleton.createNewAdditionalService(1, "Cleaning", 600);
-        adminControllerSingleton.createNewAdditionalService(2, "Food delivery", 400);
-        adminControllerSingleton.createNewAdditionalService(3, "Washing clothes", 100);
-        adminControllerSingleton.createNewAdditionalService(4, "Cable TV", 100);
-        adminControllerSingleton.createNewAdditionalService(5, "Safe", 100);
+        Deserialization deserialization = new Deserialization();
+        adminControllerSingleton.deserializeListAddServ(deserialization.deserializeAddServ());
+        adminControllerSingleton.deserializeListBookingOrder(deserialization.deserializeBookOrd());
+        adminControllerSingleton.deserializeListGuest(deserialization.deserializeGuest());
+        adminControllerSingleton.deserializeListRoom(deserialization.deserializeRoom());
+        System.out.println("===================================================================================");
 
         menuController.run();
     }

@@ -1,25 +1,29 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.entity.AdditionalService;
+import com.senla.elhoteladmin.entity.Room;
 import com.senla.elhoteladmin.service.AdditionalServiceService;
-import consoleuserinterface.ScannerUtil;
+import consoleuserinterface.ScanUtil;
 
 public class CreateNewAdditionalService implements IAction {
-    AdditionalServiceService service = AdditionalServiceService.getInstance();
+    private final AdditionalServiceService service = AdditionalServiceService.getInstance();
 
     @Override
     public void execute() {
         AdditionalService additionalService = new AdditionalService();
-        ScannerUtil scannerUtil = new ScannerUtil();
 
         System.out.println("Введите ID сервиса - ");
-        additionalService.setServiceID(scannerUtil.getInt());
+        Integer servID = ScanUtil.getInt();
+        if (service.getAdditionalServiceByID(servID) != null) {
+            System.out.println("Комната с таким номером уже существует.\n");
+            return;
+        } else additionalService.setServiceID(servID);
 
         System.out.println("Введите название сервиса - ");
-        additionalService.setServiceName(scannerUtil.getStr());
+        additionalService.setServiceName(ScanUtil.getStr());
 
         System.out.println("Введите цену сервиса - ");
-        additionalService.setServicePrice(scannerUtil.getInt());
+        additionalService.setServicePrice(ScanUtil.getInt());
 
         service.setNewAdditionalService(additionalService);
         System.out.println("Дополнительный сервис - \n" + additionalService + " \nсоздан.\n");

@@ -1,6 +1,5 @@
 package com.senla.elhoteladmin.service;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.dao.IRoomRepo;
 import com.senla.elhoteladmin.dao.RoomDaoImpl;
 import com.senla.elhoteladmin.entity.Room;
@@ -87,7 +86,12 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public Room showRoomDetails(Integer roomNumber) {
-        return roomRepo.showRoomDetails(roomNumber);
+    public Room getRoomByNum(Integer roomNumber) {
+        return roomRepo.getRoomByNum(roomNumber);
+    }
+
+    @Override
+    public void deserializeListRoom(List<Room> list) {
+        roomRepo.deserializeListRoom(list);
     }
 }

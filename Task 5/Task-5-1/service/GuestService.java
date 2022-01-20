@@ -42,4 +42,9 @@ public class GuestService implements IGuestService {
     public long getNumberGuestsHotel() {
         return guestRepo.getNumberOfGuests();
     }
+
+    @Override
+    public void deserializeListGuest(List<Guest> list) {
+        guestRepo.deserializeListGuest(list);
+    }
 }

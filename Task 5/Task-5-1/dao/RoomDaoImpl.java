@@ -1,14 +1,11 @@
 package com.senla.elhoteladmin.dao;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
-import com.senla.elhoteladmin.entity.AdditionalService;
 import com.senla.elhoteladmin.entity.Room;
 import com.senla.elhoteladmin.entity.RoomStatus;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class RoomDaoImpl implements IRoomRepo {
@@ -21,15 +18,14 @@ public class RoomDaoImpl implements IRoomRepo {
         return instance;
     }
 
-    private final List<Room> rooms = new ArrayList<>();
+    private List<Room> rooms = new ArrayList<>();
 
     @Override
     public Room get(Integer roomID) {
-        Room room = null;
-        if (roomID > 0 && roomID < rooms.size()) {
-            room = rooms.get(roomID);
-        }
-        return room;
+        return rooms.stream()
+                .filter(room -> room.getRoomID().equals(roomID))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -118,10 +114,15 @@ public class RoomDaoImpl implements IRoomRepo {
     }
 
     @Override
-    public Room showRoomDetails(Integer roomNumber) {
+    public Room getRoomByNum(Integer roomNumber) {
         return rooms.stream()
                 .filter(room -> room.getRoomNumber().equals(roomNumber))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public void deserializeListRoom(List<Room> list) {
+        RoomDaoImpl.getInstance().rooms = new ArrayList<>(list);
     }
 }

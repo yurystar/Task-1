@@ -1,8 +1,11 @@
 package com.senla.elhoteladmin.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class AdditionalService {
+public class AdditionalService implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer serviceID;
     private String serviceName;
     private Integer servicePrice;

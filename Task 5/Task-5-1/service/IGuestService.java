@@ -13,4 +13,6 @@ public interface IGuestService {
     void addGuestInStorage(Guest guest);
 
     void removeGuestFromStorage(Guest guest);
+
+    void deserializeListGuest(List<Guest> list);
 }

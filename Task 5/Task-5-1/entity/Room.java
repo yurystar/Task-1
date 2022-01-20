@@ -1,8 +1,11 @@
 package com.senla.elhoteladmin.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Room {
+public class Room implements Serializable {
+    private static final long serialVersionUID = 4L;
+
     private Integer roomID;
     private Integer roomNumber;
     private RoomType roomType;

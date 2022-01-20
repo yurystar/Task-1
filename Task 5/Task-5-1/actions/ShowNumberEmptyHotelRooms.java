@@ -3,7 +3,7 @@ package consoleuserinterface.actions;
 import com.senla.elhoteladmin.service.RoomService;
 
 public class ShowNumberEmptyHotelRooms implements IAction {
-    RoomService roomService = RoomService.getInstance();
+    private final RoomService roomService = RoomService.getInstance();
 
 
     @Override

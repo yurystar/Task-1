@@ -3,7 +3,7 @@ package consoleuserinterface.actions;
 import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 
 public class ShowListGuestsAndTheirRoomsSortedByRoom implements IAction{
-    AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
+    private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
 
     @Override
     public void execute() {

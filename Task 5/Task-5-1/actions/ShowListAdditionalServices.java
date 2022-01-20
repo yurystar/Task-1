@@ -3,7 +3,7 @@ package consoleuserinterface.actions;
 import com.senla.elhoteladmin.service.AdditionalServiceService;
 
 public class ShowListAdditionalServices implements IAction{
-    AdditionalServiceService additionalServiceService =
+    private final AdditionalServiceService additionalServiceService =
             AdditionalServiceService.getInstance();
 
     @Override

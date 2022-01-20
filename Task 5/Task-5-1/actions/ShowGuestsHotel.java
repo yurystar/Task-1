@@ -3,7 +3,7 @@ package consoleuserinterface.actions;
 import com.senla.elhoteladmin.service.GuestService;
 
 public class ShowGuestsHotel implements IAction {
-    GuestService guestService = GuestService.getInstance();
+    private final GuestService guestService = GuestService.getInstance();
 
     @Override
     public void execute() {

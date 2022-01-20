@@ -1,12 +1,9 @@
 package com.senla.elhoteladmin.dao;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.entity.Guest;
-import com.senla.elhoteladmin.entity.Room;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class GuestDaoImpl implements IGuestRepo {
     private static GuestDaoImpl instance;
@@ -18,15 +15,14 @@ public class GuestDaoImpl implements IGuestRepo {
         return instance;
     }
 
-    private final List<Guest> guests = new ArrayList<>();
+    private List<Guest> guests = new ArrayList<>();
 
     @Override
-    public Guest get(Integer guestID) throws ArrayIndexOutOfBoundsException{
-        Guest guest = null;
-        if (guestID > 0 && guestID < guests.size()) {
-            guest = guests.get(guestID);
-        }
-        return guest;
+    public Guest get(Integer guestID) throws ArrayIndexOutOfBoundsException {
+        return guests.stream()
+                .filter(guest -> guest.getGuestID().equals(guestID))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -56,5 +52,10 @@ public class GuestDaoImpl implements IGuestRepo {
     @Override
     public Integer getNumberOfGuests() {
         return guests.size();
+    }
+
+    @Override
+    public void deserializeListGuest(List<Guest> list) {
+        GuestDaoImpl.getInstance().guests = new ArrayList<>(list);
     }
 }

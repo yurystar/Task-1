@@ -1,15 +1,19 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.controller.AdminControllerSingleton;
-import consoleuserinterface.ScannerUtil;
+import consoleuserinterface.ScanUtil;
 
 public class ShowRoomDetails implements IAction {
-    AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
+    private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();
 
     @Override
     public void execute() {
         System.out.println("Введите номер комнаты - ");
-        System.out.println(adminControllerSingleton.showRoomDetails(new ScannerUtil().getInt()));
+        Integer roomNum = ScanUtil.getInt();
+        if (adminControllerSingleton.getRoomByNum(roomNum) != null) {
+            System.out.print("Комната номер - " + roomNum);
+            System.out.println(adminControllerSingleton.getRoomByNum(roomNum));
+        } else System.out.println("Нет такой комнаты.");
         System.out.println();
     }
 }

@@ -30,73 +30,12 @@ public class AdminControllerSingleton {
         this.roomService = RoomService.getInstance();
     }
 
-    public void createNewRoom(Integer roomID, Integer roomNumber, RoomType roomType, Integer roomPlaces,
-                              Integer roomPrice) {
-        Room room = new Room(roomID, roomNumber, roomType, roomPlaces, roomPrice);
-        roomService.setNewRoom(room);
-    }
-
-    public void deleteRoom(Integer roomNumber) {
-        for (Room room : roomService.getRoomList()) {
-            if (room.getRoomNumber().equals(roomNumber)) {
-                roomService.deleteRoom(room);
-            }
-        }
-    }
-
     public Room getRoomByNumber(Integer roomNumber) {
         return roomService.getRoomByNumber(roomNumber);
     }
 
-    public List<Room> getRoomsList() {
-        return roomService.getRoomList();
-    }
-
-    public void createNewAdditionalService(
-            Integer serviceID,
-            String serviceName,
-            Integer servicePrice) {
-        AdditionalService service = new AdditionalService(serviceID, serviceName, servicePrice);
-        additionalServiceService.setNewAdditionalService(service);
-    }
-
-    public void deleteAdditionalService(Integer serviceID) {
-        additionalServiceService.deleteAdditionalService
-                (additionalServiceService.getListAdditionalServices()
-                        .stream()
-                        .filter(additionalService -> additionalService.getServiceID().equals(serviceID))
-                        .findFirst()
-                        .orElse(null));
-    }
-
     public AdditionalService getAdditionalServiceByID(Integer serviceID) {
         return additionalServiceService.getAdditionalServiceByID(serviceID);
-    }
-
-    public List<Guest> createOrderGuestsList(Guest... guests) {
-        List<Guest> hotelGuestsList = new ArrayList<>();
-        hotelGuestsList.addAll(Arrays.asList(guests));
-        return hotelGuestsList;
-    }
-
-    public List<AdditionalService> createOrderAddServicesList(AdditionalService... additionalServices) {
-        List<AdditionalService> hotelAddServicesList = new ArrayList<>();
-        hotelAddServicesList.addAll(Arrays.asList(additionalServices));
-        return hotelAddServicesList;
-    }
-
-    public void createNewOrder(
-            Integer orderID,
-            LocalDate orderCheckInDate,
-            LocalDate orderCheckOutDate,
-            Room orderedHotelRoom,
-            List<AdditionalService> orderedAdditionalServices,
-            List<Guest> orderHotelGuests,
-            OrderStatus orderStatus) {
-        BookingOrder bookingOrder = new BookingOrder(orderID, orderCheckInDate,
-                orderCheckOutDate, orderedHotelRoom, orderedAdditionalServices, orderHotelGuests,
-                orderStatus);
-        bookingOrderService.saveNewBookingOrder(bookingOrder);
     }
 
     public void saveNewBookingOrder(BookingOrder order) {
@@ -189,27 +128,31 @@ public class AdminControllerSingleton {
         return res;
     }
 
-    public <T> void printList(List<T> list) {
-        list.forEach(System.out::println);
-    }
-
-    public void setNewPriceRoom(Integer roomNumber, Integer priceRoom) {
-        roomService.setNewPriceRoom(roomNumber, priceRoom);
-    }
-
     public List<AdditionalService> getListAdditionalServices() {
         return additionalServiceService.getListAdditionalServices();
     }
 
-    public Room showRoomDetails(Integer roomNumber) {
-        return roomService.showRoomDetails(roomNumber);
+    public Room getRoomByNum(Integer roomNumber) {
+        return roomService.getRoomByNum(roomNumber);
     }
 
-    public void addGuestInStorage(Guest guest) {
-        guestService.addGuestInStorage(guest);
+    public void deleteBookingOrderByID(Integer orderID) {
+        bookingOrderService.deleteBookingOrderByID(orderID);
     }
 
-    public void deleteBookingOrder(Integer orderID) {
-        bookingOrderService.deleteBookingOrder(orderID);
+    public void deserializeListAddServ(List<AdditionalService> list) {
+        additionalServiceService.deserializeListAddServ(list);
+    }
+
+    public void deserializeListBookingOrder(List<BookingOrder> list) {
+        bookingOrderService.deserializeListBookingOrder(list);
+    }
+
+    public void deserializeListGuest(List<Guest> list) {
+        guestService.deserializeListGuest(list);
+    }
+
+    public void deserializeListRoom(List<Room> list) {
+        roomService.deserializeListRoom(list);
     }
 }

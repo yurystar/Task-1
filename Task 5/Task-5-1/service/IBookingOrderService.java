@@ -18,5 +18,7 @@ public interface IBookingOrderService {
 
     List<AdditionalService> getListAdditionalServiceOfGuestSortedByPrice(Integer guestID);
 
-    void deleteBookingOrder(Integer orderID);
+    void deleteBookingOrderByID(Integer orderID);
+
+    void deserializeListBookingOrder(List<BookingOrder> list);
 }

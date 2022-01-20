@@ -1,12 +1,10 @@
 package com.senla.elhoteladmin.dao;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.entity.AdditionalService;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AdditionalServiceDaoImpl implements IAdditionalServiceRepo {
@@ -19,16 +17,15 @@ public class AdditionalServiceDaoImpl implements IAdditionalServiceRepo {
         return instance;
     }
 
-    private final List<AdditionalService> additionalServices = new ArrayList<>();
+    private List<AdditionalService> additionalServices = new ArrayList<>();
 
 
     @Override
     public AdditionalService get(Integer additionalServiceID) {
-        AdditionalService service = null;
-        if (additionalServiceID>0 && additionalServiceID < additionalServices.size()) {
-            service = additionalServices.get(additionalServiceID);
-        }
-        return service;
+        return additionalServices.stream()
+                .filter(addServ -> addServ.getServiceID().equals(additionalServiceID))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -60,5 +57,10 @@ public class AdditionalServiceDaoImpl implements IAdditionalServiceRepo {
         return additionalServices.stream()
                 .sorted(Comparator.comparingInt(AdditionalService::getServicePrice))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deserializeListAddServ(List<AdditionalService> list) {
+        AdditionalServiceDaoImpl.getInstance().additionalServices = new ArrayList<>(list);
     }
 }

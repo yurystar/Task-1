@@ -1,6 +1,5 @@
 package com.senla.elhoteladmin.service;
 
-import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
 import com.senla.elhoteladmin.dao.IBookingOrderRepo;
 import com.senla.elhoteladmin.entity.AdditionalService;
@@ -55,10 +54,15 @@ public class BookingOrderService implements IBookingOrderService {
     }
 
     @Override
-    public void deleteBookingOrder(Integer orderID) {
+    public void deleteBookingOrderByID(Integer orderID) {
         BookingOrder order = bookingOrderRepo.get(orderID);
         if (order != null) {
             bookingOrderRepo.delete(order);
         }
+    }
+
+    @Override
+    public void deserializeListBookingOrder(List<BookingOrder> list) {
+        bookingOrderRepo.deserializeListBookingOrder(list);
     }
 }

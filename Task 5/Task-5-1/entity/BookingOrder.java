@@ -1,10 +1,13 @@
 package com.senla.elhoteladmin.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class BookingOrder {
+public class BookingOrder implements Serializable {
+    private static final long serialVersionUID = 2L;
+
     private Integer orderID;
     private LocalDate orderCreateDate;
     private LocalDate orderCheckInDate;

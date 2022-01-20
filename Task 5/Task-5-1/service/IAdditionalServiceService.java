@@ -15,4 +15,5 @@ public interface IAdditionalServiceService {
 
     AdditionalService getAdditionalServiceByID(Integer serviceID);
 
+    public void deserializeListAddServ(List<AdditionalService> list);
 }

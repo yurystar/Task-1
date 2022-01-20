@@ -13,4 +13,6 @@ public interface IBookingOrderRepo extends DAO<BookingOrder> {
     List<BookingOrder> getListGuestsAndTheirRoomsSortedByCheckOutDays();
 
     List<AdditionalService> getListAdditionalServiceOfGuestSortedByPrice(Integer guestID);
+
+    void deserializeListBookingOrder(List<BookingOrder> list);
 }

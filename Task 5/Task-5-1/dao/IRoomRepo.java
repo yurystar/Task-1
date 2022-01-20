@@ -1,5 +1,6 @@
 package com.senla.elhoteladmin.dao;
 
+import com.senla.elhoteladmin.entity.AdditionalService;
 import com.senla.elhoteladmin.entity.Room;
 
 import java.util.Comparator;
@@ -26,5 +27,7 @@ public interface IRoomRepo extends DAO<Room> {
 
     void setNewPriceRoom(Integer roomNumber, Integer priceRoom);
 
-    Room showRoomDetails(Integer roomNumber);
+    Room getRoomByNum(Integer roomNumber);
+
+    void deserializeListRoom(List<Room> list);
 }
