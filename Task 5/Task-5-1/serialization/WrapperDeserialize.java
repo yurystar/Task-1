@@ -1,35 +1,35 @@
 package com.senla.elhoteladmin.serialization;
 
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.entity.Room;
+import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
+import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
+import com.senla.elhoteladmin.dao.GuestDaoImpl;
+import com.senla.elhoteladmin.dao.RoomDaoImpl;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.List;
 
 public class WrapperDeserialize {
-//    public void deserializeRoom() throws NullPointerException {
-//
-//        String fileName = ".." + File.separator + "Room.ser";
-//        File file = new File(fileName);
-//
-//        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
-//
-//            List<WrapperSerialize> newList = (List<WrapperSerialize>) objectInputStream.readObject();
-//            System.out.println("Room storage loaded");
-//
-//            for (WrapperSerialize serializeObj : newList) {
-//                if ()
-//            }
-//
-//        } catch (FileNotFoundException e) {
-//            System.out.println("File not found");
-//        } catch (IOException e) {
-//            System.out.println("IOException exception");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("class not found exception");
-//        }
-//        System.out.println("Not exist storage");
-//        return Collections.<Room>emptyList();
-//    }
+
+    public static void deserialize() throws NullPointerException {
+
+        String fileName = ".." + File.separator + "allEntity.ser";
+        File file = new File(fileName);
+
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
+
+            Wrapper wrapper = (Wrapper) objectInputStream.readObject();
+            AdditionalServiceDaoImpl.getInstance().deserializeListAddServ(wrapper.getAdditionalServices());
+            BookingOrderDaoImpl.getInstance().deserializeListBookingOrder(wrapper.getBookingOrders());
+            GuestDaoImpl.getInstance().deserializeListGuest(wrapper.getGuests());
+            RoomDaoImpl.getInstance().deserializeListRoom(wrapper.getRooms());
+
+            System.out.println("Данные восстановлены.");
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("IOException exception");
+        } catch (ClassNotFoundException e) {
+            System.out.println("class not found exception");
+        }
+    }
 }

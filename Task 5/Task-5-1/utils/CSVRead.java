@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CSVRead {
 
@@ -17,36 +16,22 @@ public class CSVRead {
         RoomDaoImpl roomDao = RoomDaoImpl.getInstance();
         try (BufferedReader reader = new BufferedReader(new FileReader("..\\Room.csv"))) {
 
-            String line = null;
-            Scanner scanner = null;
-            int index = 0;
+            String[] lineArray;
+            String line;
             List<Room> roomArrayList = new ArrayList<>();
-
             while ((line = reader.readLine()) != null) {
+
+                lineArray = line.split(",");
                 Room room = new Room();
-                scanner = new Scanner(line);
-                scanner.useDelimiter(",");
-                while (scanner.hasNext()) {
-                    String data = scanner.next();
-                    if (index == 0)
-                        room.setRoomID(Integer.parseInt(data));
-                    else if (index == 1)
-                        room.setRoomNumber(Integer.parseInt(data));
-                    else if (index == 2)
-                        room.setRoomType(RoomType.valueOf(data));
-                    else if (index == 3)
-                        room.setRoomPlaces(Integer.parseInt(data));
-                    else if (index == 4)
-                        room.setRoomPrice(Integer.parseInt(data));
-                    else if (index == 5)
-                        room.setRoomStatus(RoomStatus.valueOf(data));
-                    else
-                        System.out.println("Некорректные данные::" + data);
-                    index++;
-                }
-                index = 0;
+                room.setRoomID(Integer.parseInt(lineArray[0]));
+                room.setRoomNumber(Integer.parseInt(lineArray[1]));
+                room.setRoomType(RoomType.valueOf(lineArray[2]));
+                room.setRoomPlaces(Integer.parseInt(lineArray[3]));
+                room.setRoomPrice(Integer.parseInt(lineArray[4]));
+                room.setRoomStatus(RoomStatus.valueOf(lineArray[5]));
                 roomArrayList.add(room);
             }
+
             System.out.println(roomArrayList);
             System.out.println();
             for (Room room : roomArrayList) {
@@ -62,7 +47,6 @@ public class CSVRead {
                     roomDao.update(room);
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error read!");
