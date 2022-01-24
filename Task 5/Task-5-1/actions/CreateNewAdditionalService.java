@@ -1,9 +1,8 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.entity.Room;
 import com.senla.elhoteladmin.service.AdditionalServiceService;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 public class CreateNewAdditionalService implements IAction {
     private final AdditionalServiceService service = AdditionalServiceService.getInstance();

@@ -1,7 +1,7 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.service.RoomService;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 public class SetNewPriceRoom implements IAction {
     private final RoomService roomService = RoomService.getInstance();

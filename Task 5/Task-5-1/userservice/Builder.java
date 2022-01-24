@@ -1,6 +1,8 @@
 package consoleuserinterface.userservice;
 
 import consoleuserinterface.actions.*;
+import consoleuserinterface.actions.exportimportactions.ExportRoom;
+import consoleuserinterface.actions.exportimportactions.ImportRoom;
 
 public class Builder {
     private Menu rootMenu;
@@ -26,6 +28,9 @@ public class Builder {
         rootMenu.addMenuItem(new MenuItem
                 ("Администрирование гостиницы        (выберите 3)",
                         () -> System.out.println("Next"), getAdminChangeMenu()));
+        rootMenu.addMenuItem(new MenuItem
+                ("Экспорт/импорт файлов              (выберите 4)",
+                        () -> System.out.println("Next"), getExpImpFilesMenu()));
     }
 
     public Menu getOrderMenu() {
@@ -183,5 +188,36 @@ public class Builder {
                         new SetRoomStatusAsEmpty(), adminChangeMenu));
 
         return adminChangeMenu;
+    }
+
+    public Menu getExpImpFilesMenu() {
+        Menu expImpFilesMenu = new Menu("Exp/Imp Files Menu");
+
+        expImpFilesMenu.addMenuItem(new MenuItem
+                ("Вернуться в главное меню                (выберите 0)",
+                        () -> System.out.println("Next"), rootMenu));
+        expImpFilesMenu.addMenuItem(new MenuItem
+                ("Экспортировать файл с комнатой(ами)     (выберите 1)",
+                        new ExportRoom(), expImpFilesMenu));
+        expImpFilesMenu.addMenuItem(new MenuItem
+                ("Импортировать файл с комнатой(ами)      (выберите 2)",
+                        new ImportRoom(), expImpFilesMenu));
+//        expImpFilesMenu.addMenuItem(new MenuItem
+//                ("Добавить дополнительный сервис          (выберите 3)",
+//                        new CreateNewAdditionalService(), expImpFilesMenu));
+//        expImpFilesMenu.addMenuItem(new MenuItem
+//                ("Удалить дополнительный сервис           (выберите 4)",
+//                        new DeleteAdditionalService(), expImpFilesMenu));
+//        expImpFilesMenu.addMenuItem(new MenuItem
+//                ("Изменить цену номера                    (выберите 5)",
+//                        new SetNewPriceRoom(), expImpFilesMenu));
+//        expImpFilesMenu.addMenuItem(new MenuItem
+//                ("Установить номеру статус \"На ремонте\"   (выберите 6)",
+//                        new SetRoomStatusAsOnRepair(), expImpFilesMenu));
+//        expImpFilesMenu.addMenuItem(new MenuItem
+//                ("Установить номеру статус \"Свободен\"     (выберите 7)",
+//                        new SetRoomStatusAsEmpty(), expImpFilesMenu));
+
+        return expImpFilesMenu;
     }
 }

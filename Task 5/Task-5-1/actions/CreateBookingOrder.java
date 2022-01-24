@@ -2,12 +2,11 @@ package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.controller.AdminControllerSingleton;
 import com.senla.elhoteladmin.entity.*;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CreateBookingOrder implements IAction {
     private final AdminControllerSingleton adminControllerSingleton =

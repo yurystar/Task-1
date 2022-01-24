@@ -79,12 +79,15 @@ public class Room implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Room)) return false;
         Room room = (Room) o;
-        return getRoomID().equals(room.getRoomID()) && getRoomNumber().equals(room.getRoomNumber()) && getRoomType() == room.getRoomType() && getRoomPlaces().equals(room.getRoomPlaces()) && getRoomPrice().equals(room.getRoomPrice()) && getRoomStatus() == room.getRoomStatus();
+        return getRoomID().equals(room.getRoomID()) && getRoomNumber().equals(room.getRoomNumber())
+                && getRoomType() == room.getRoomType() && getRoomPlaces().equals(room.getRoomPlaces())
+                && getRoomPrice().equals(room.getRoomPrice()) && getRoomStatus() == room.getRoomStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRoomID(), getRoomNumber(), getRoomType(), getRoomPlaces(), getRoomPrice(), getRoomStatus());
+        return Objects.hash(getRoomID(), getRoomNumber(), getRoomType(), getRoomPlaces(),
+                getRoomPrice(), getRoomStatus());
     }
 
     @Override

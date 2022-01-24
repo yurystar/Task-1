@@ -2,7 +2,7 @@ package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.entity.Room;
 import com.senla.elhoteladmin.service.RoomService;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 public class DeleteRoom implements IAction {
     private final RoomService roomService = RoomService.getInstance();
