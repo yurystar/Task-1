@@ -2,7 +2,7 @@ package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.entity.AdditionalService;
 import com.senla.elhoteladmin.service.AdditionalServiceService;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 public class DeleteAdditionalService implements IAction{
     private final AdditionalServiceService service = AdditionalServiceService.getInstance();

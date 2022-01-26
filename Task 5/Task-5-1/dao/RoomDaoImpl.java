@@ -29,6 +29,14 @@ public class RoomDaoImpl implements IRoomRepo {
     }
 
     @Override
+    public Room getRoomByNum(Integer roomNumber) {
+        return rooms.stream()
+                .filter(room -> room.getRoomNumber().equals(roomNumber))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
     public List<Room> getAll() {
         return rooms;
     }
@@ -41,7 +49,11 @@ public class RoomDaoImpl implements IRoomRepo {
     @Override
     public void update(Room room) {
         if (!rooms.contains(room)) {
-            rooms.add(room);
+            Room tmpRoom = getRoomByNum(room.getRoomNumber());
+            if (tmpRoom != null) {
+                rooms.remove(tmpRoom);
+                rooms.add(room);
+            }
         } else {
             System.out.println("Such an object already exists!");
         }
@@ -111,14 +123,6 @@ public class RoomDaoImpl implements IRoomRepo {
                 room.setRoomPrice(priceRoom);
             }
         }
-    }
-
-    @Override
-    public Room getRoomByNum(Integer roomNumber) {
-        return rooms.stream()
-                .filter(room -> room.getRoomNumber().equals(roomNumber))
-                .findFirst()
-                .orElse(null);
     }
 
     @Override

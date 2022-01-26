@@ -1,10 +1,6 @@
 package consoleuserinterface.userservice;
 
-import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
-import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
-import com.senla.elhoteladmin.dao.GuestDaoImpl;
-import com.senla.elhoteladmin.dao.RoomDaoImpl;
-import com.senla.elhoteladmin.serialization.Serialization;
+import com.senla.elhoteladmin.serialization.WrapperSerialize;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,7 +14,7 @@ public class MenuController {
         this.navigator = new Navigator();
     }
 
-    public void run() throws IOException {
+    public void run() {
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
         Integer index;
@@ -27,10 +23,8 @@ public class MenuController {
             if (scanner.hasNextInt()) {
                 index = scanner.nextInt();
                 if (index == -1) {
-                    new Serialization().SerializeAddServ(AdditionalServiceDaoImpl.getInstance().getAll());
-                    new Serialization().SerializeBookOrd(BookingOrderDaoImpl.getInstance().getAll());
-                    new Serialization().SerializeGuest(GuestDaoImpl.getInstance().getAll());
-                    new Serialization().SerializeRoom(RoomDaoImpl.getInstance().getAll());
+
+                    WrapperSerialize.serialize();
                     System.out.println("Вы вышли из программы.");
                     return;
                 }

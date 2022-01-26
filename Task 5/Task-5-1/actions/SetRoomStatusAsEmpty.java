@@ -1,7 +1,7 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.controller.AdminControllerSingleton;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 public class SetRoomStatusAsEmpty implements IAction {
     private final AdminControllerSingleton adminControllerSingleton = AdminControllerSingleton.getInstance();

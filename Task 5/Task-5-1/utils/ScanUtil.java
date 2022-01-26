@@ -1,4 +1,4 @@
-package consoleuserinterface;
+package consoleuserinterface.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

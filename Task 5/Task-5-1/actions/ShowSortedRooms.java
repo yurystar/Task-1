@@ -1,9 +1,7 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.service.RoomService;
-import consoleuserinterface.ScanUtil;
-
-import java.util.Scanner;
+import consoleuserinterface.utils.ScanUtil;
 
 public class ShowSortedRooms implements IAction {
     private final RoomService roomService = RoomService.getInstance();

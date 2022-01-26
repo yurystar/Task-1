@@ -1,7 +1,7 @@
 package consoleuserinterface.actions;
 
 import com.senla.elhoteladmin.service.BookingOrderService;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 public class ShowLastThreeGuestsRoom implements IAction {
     private final BookingOrderService bookingOrderService = BookingOrderService.getInstance();

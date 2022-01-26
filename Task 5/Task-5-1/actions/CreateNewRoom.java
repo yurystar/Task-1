@@ -4,7 +4,7 @@ import com.senla.elhoteladmin.entity.Room;
 import com.senla.elhoteladmin.entity.RoomStatus;
 import com.senla.elhoteladmin.entity.RoomType;
 import com.senla.elhoteladmin.service.RoomService;
-import consoleuserinterface.ScanUtil;
+import consoleuserinterface.utils.ScanUtil;
 
 public class CreateNewRoom implements IAction {
     private final RoomService roomService = RoomService.getInstance();
