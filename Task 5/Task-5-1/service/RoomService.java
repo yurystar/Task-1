@@ -1,12 +1,18 @@
 package com.senla.elhoteladmin.service;
 
+import com.senla.elhoteladmin.configuration.ConfigProperty;
+import com.senla.elhoteladmin.configuration.ConfigUtil;
 import com.senla.elhoteladmin.dao.IRoomRepo;
-import com.senla.elhoteladmin.dao.RoomDaoImpl;
 import com.senla.elhoteladmin.entity.Room;
+import depinject.DepInjReflectUtil;
+import depinject.DependencyInjection;
 
 import java.util.List;
 
 public class RoomService implements IRoomService {
+    @DependencyInjection
+    private IRoomRepo roomRepo;
+
     private static RoomService instance;
 
     public static synchronized RoomService getInstance() {
@@ -16,10 +22,17 @@ public class RoomService implements IRoomService {
         return instance;
     }
 
-    private final IRoomRepo roomRepo;
+    @ConfigProperty
+    private Boolean roomStatusChange;
 
-    public RoomService() {
-        this.roomRepo = RoomDaoImpl.getInstance();
+    private RoomService() {
+        DepInjReflectUtil.initializeDepInjection(this);
+        ConfigUtil.initializeProperties(this);
+    }
+
+    @Override
+    public Boolean getRoomStatusChange() {
+        return roomStatusChange;
     }
 
     @Override
@@ -58,7 +71,7 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public void setNewRoom(Room room) {
+    public void saveNewRoom(Room room) {
         roomRepo.save(room);
     }
 
@@ -68,15 +81,7 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public Room getRoomByNumber(Integer roomNumber) {
-        return roomRepo.getAll().stream()
-                .filter(room -> room.getRoomNumber().equals(roomNumber))
-                .findFirst()
-                .orElse(null);
-    }
-
-    @Override
-    public List<Room> getRoomList() {
+    public List<Room> getRoomsList() {
         return roomRepo.getAll();
     }
 
@@ -88,6 +93,11 @@ public class RoomService implements IRoomService {
     @Override
     public Room getRoomByNum(Integer roomNumber) {
         return roomRepo.getRoomByNum(roomNumber);
+    }
+
+    @Override
+    public void updateRoom(Room room) {
+        roomRepo.update(room);
     }
 
     @Override
