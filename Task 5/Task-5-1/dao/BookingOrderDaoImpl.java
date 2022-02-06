@@ -1,22 +1,23 @@
-package com.senla.elhoteladmin.dao;
+package com.senla.daoservice.dao;
 
-import com.senla.elhoteladmin.entity.*;
+import com.senla.daoservice.configuration.ConfigProperty;
+import com.senla.daoservice.configuration.ConfigUtil;
+import com.senla.daoservice.entity.*;
 
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class BookingOrderDaoImpl implements IBookingOrderRepo {
-    private static BookingOrderDaoImpl instance;
-
-    public static synchronized BookingOrderDaoImpl getInstance() {
-        if (instance == null) {
-            instance = new BookingOrderDaoImpl();
-        }
-        return instance;
-    }
 
     private List<BookingOrder> bookingOrders = new ArrayList<>();
+
+    @ConfigProperty
+    private int limitNumGuestsForShow;
+
+    public BookingOrderDaoImpl() {
+        ConfigUtil.initializeProperties(this);
+    }
 
     @Override
     public BookingOrder get(Integer bookingOrderID) throws ArrayIndexOutOfBoundsException {
@@ -62,7 +63,7 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
                 .filter(bookingOrder -> bookingOrder.getOrderCheckInDate().
                         isBefore(LocalDate.now().plusDays(1)))
                 .sorted((o1, o2) -> o2.getOrderCheckInDate().compareTo(o1.getOrderCheckInDate()))
-                .limit(3)
+                .limit(limitNumGuestsForShow)
                 .collect(Collectors.toList());
     }
 
@@ -100,6 +101,6 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
 
     @Override
     public void deserializeListBookingOrder(List<BookingOrder> list) {
-        BookingOrderDaoImpl.getInstance().bookingOrders = new ArrayList<>(list);
+       bookingOrders = new ArrayList<>(list);
     }
 }

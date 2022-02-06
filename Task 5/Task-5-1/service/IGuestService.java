@@ -1,6 +1,6 @@
-package com.senla.elhoteladmin.service;
+package com.senla.daoservice.service;
 
-import com.senla.elhoteladmin.entity.Guest;
+import com.senla.daoservice.entity.Guest;
 
 import java.util.List;
 
@@ -10,9 +10,13 @@ public interface IGuestService {
 
     long getNumberGuestsHotel();
 
-    void addGuestInStorage(Guest guest);
+    void saveGuestInStorage(Guest guest);
 
     void removeGuestFromStorage(Guest guest);
+
+    Guest getGuestById(Integer guestID);
+
+    void updateGuest(Guest guest);
 
     void deserializeListGuest(List<Guest> list);
 }

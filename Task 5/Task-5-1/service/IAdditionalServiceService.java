@@ -1,6 +1,6 @@
-package com.senla.elhoteladmin.service;
+package com.senla.daoservice.service;
 
-import com.senla.elhoteladmin.entity.AdditionalService;
+import com.senla.daoservice.entity.AdditionalService;
 
 import java.util.List;
 
@@ -9,11 +9,13 @@ public interface IAdditionalServiceService {
 
     List<AdditionalService> getListAdditionalServicesSortedByPrice();
 
-    void setNewAdditionalService(AdditionalService additionalService);
+    void saveNewAdditionalService(AdditionalService additionalService);
 
     void deleteAdditionalService(AdditionalService additionalService);
 
     AdditionalService getAdditionalServiceByID(Integer serviceID);
 
     public void deserializeListAddServ(List<AdditionalService> list);
+
+    void updateAdditionalService(AdditionalService additionalService);
 }

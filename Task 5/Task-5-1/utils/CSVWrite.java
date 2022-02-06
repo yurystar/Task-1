@@ -1,13 +1,10 @@
 package consoleuserinterface.utils;
 
-import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
-import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
-import com.senla.elhoteladmin.dao.GuestDaoImpl;
-import com.senla.elhoteladmin.dao.RoomDaoImpl;
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.entity.BookingOrder;
-import com.senla.elhoteladmin.entity.Guest;
-import com.senla.elhoteladmin.entity.Room;
+import com.senla.daoservice.controller.ActionController;
+import com.senla.daoservice.entity.AdditionalService;
+import com.senla.daoservice.entity.BookingOrder;
+import com.senla.daoservice.entity.Guest;
+import com.senla.daoservice.entity.Room;
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
@@ -15,18 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVWrite {
+    ActionController adminController = new ActionController();
 
-    public static void CSVWriteRoom() {
+    public void CSVWriteRoom() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\Room.csv"))) {
-            RoomDaoImpl roomDao = RoomDaoImpl.getInstance();
+
             List<Room> roomsForExport = new ArrayList<>();
 
             int index = -1;
             while (index != 0) {
                 System.out.println("Введите номер комнаты для экспорта. Или введите 0 для завершения выбора.");
                 index = ScanUtil.getInt();
-                if (roomDao.getRoomByNum(index) != null && index != 0) {
-                    roomsForExport.add(roomDao.getRoomByNum(index));
+                if (adminController.getAdminController().getRoomByNum(index) != null && index != 0) {
+                    roomsForExport.add(adminController.getAdminController().getRoomByNum(index));
                 } else System.out.println("Нет такой комнаты или выбор завершен.\n");
             }
 
@@ -44,17 +42,17 @@ public class CSVWrite {
         }
     }
 
-    public static void CSVWriteGuest() {
+    public void CSVWriteGuest() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\Guest.csv"))) {
-            GuestDaoImpl guestDao = GuestDaoImpl.getInstance();
+
             List<Guest> guestsForExport = new ArrayList<>();
 
             int index = -1;
             while (index != 0) {
                 System.out.println("Введите ID номер гостя для экспорта. Или введите 0 для завершения выбора.");
                 index = ScanUtil.getInt();
-                if (guestDao.get(index) != null && index != 0) {
-                    guestsForExport.add(guestDao.get(index));
+                if (adminController.getAdminController().getGuestById(index) != null && index != 0) {
+                    guestsForExport.add(adminController.getAdminController().getGuestById(index));
                 } else System.out.println("Нет такого гостя или выбор завершен.\n");
             }
 
@@ -72,9 +70,9 @@ public class CSVWrite {
         }
     }
 
-    public static void CSVWriteAddServ() {
+    public void CSVWriteAddServ() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\AdditionalService.csv"))) {
-            AdditionalServiceDaoImpl serviceDao = AdditionalServiceDaoImpl.getInstance();
+
             List<AdditionalService> servicesForExport = new ArrayList<>();
 
             int index = -1;
@@ -82,8 +80,8 @@ public class CSVWrite {
                 System.out.println("Введите ID номер дополнительного сервиса для экспорта. " +
                         "Или введите 0 для завершения выбора.");
                 index = ScanUtil.getInt();
-                if (serviceDao.get(index) != null && index != 0) {
-                    servicesForExport.add(serviceDao.get(index));
+                if (adminController.getAdminController().getAdditionalServiceByID(index) != null && index != 0) {
+                    servicesForExport.add(adminController.getAdminController().getAdditionalServiceByID(index));
                 } else System.out.println("Нет такого дополнительного сервиса или выбор завершен.\n");
             }
 
@@ -101,19 +99,19 @@ public class CSVWrite {
         }
     }
 
-    public static void CSVWriteBookOrder() {
+    public void CSVWriteBookOrder() {
         String roomStr;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("..\\BookingOrder.csv"))) {
-            BookingOrderDaoImpl bookingOrderDao = BookingOrderDaoImpl.getInstance();
+
             List<BookingOrder> orders = new ArrayList<>();
 
             int index = -1;
             while (index != 0) {
                 System.out.println("Введите номер заказа для экспорта. Или введите 0 для завершения выбора.");
                 index = ScanUtil.getInt();
-                if (bookingOrderDao.get(index) != null && index != 0) {
-                    orders.add(bookingOrderDao.get(index));
+                if (adminController.getAdminController().getBookingOrderByID(index) != null && index != 0) {
+                    orders.add(adminController.getAdminController().getBookingOrderByID(index));
                 } else System.out.println("Нет такого заказа или выбор завершен.\n");
             }
 
