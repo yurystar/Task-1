@@ -1,6 +1,6 @@
-package com.senla.elhoteladmin.configuration;
+package com.senla.daoservice.configuration;
 
-import com.senla.elhoteladmin.configuration.exception.PropertiesNotFoundException;
+import com.senla.daoservice.configuration.exception.PropertiesNotFoundException;
 
 import java.io.File;
 import java.io.FileInputStream;

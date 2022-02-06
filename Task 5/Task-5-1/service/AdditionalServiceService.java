@@ -1,7 +1,7 @@
-package com.senla.elhoteladmin.service;
+package com.senla.daoservice.service;
 
-import com.senla.elhoteladmin.dao.IAdditionalServiceRepo;
-import com.senla.elhoteladmin.entity.AdditionalService;
+import com.senla.daoservice.dao.IAdditionalServiceRepo;
+import com.senla.daoservice.entity.AdditionalService;
 import depinject.DepInjReflectUtil;
 import depinject.DependencyInjection;
 
@@ -12,16 +12,7 @@ public class AdditionalServiceService implements IAdditionalServiceService {
     @DependencyInjection
     private IAdditionalServiceRepo additionalServiceRepo;
 
-    private static AdditionalServiceService instance;
-
-    public static synchronized AdditionalServiceService getInstance() {
-        if (instance == null) {
-            instance = new AdditionalServiceService();
-        }
-        return instance;
-    }
-
-    private AdditionalServiceService() {
+    public AdditionalServiceService() {
         DepInjReflectUtil.initializeDepInjection(this);
     }
 

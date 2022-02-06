@@ -1,7 +1,6 @@
-package com.senla.elhoteladmin.dao;
+package com.senla.daoservice.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface DAO<T> {
     T get(Integer id);

@@ -1,7 +1,7 @@
-package com.senla.elhoteladmin.service;
+package com.senla.daoservice.service;
 
-import com.senla.elhoteladmin.dao.IGuestRepo;
-import com.senla.elhoteladmin.entity.Guest;
+import com.senla.daoservice.dao.IGuestRepo;
+import com.senla.daoservice.entity.Guest;
 import depinject.DepInjReflectUtil;
 import depinject.DependencyInjection;
 
@@ -11,16 +11,7 @@ public class GuestService implements IGuestService {
     @DependencyInjection
     private IGuestRepo guestRepo;
 
-    private static GuestService instance;
-
-    public static synchronized GuestService getInstance() {
-        if (instance == null) {
-            instance = new GuestService();
-        }
-        return instance;
-    }
-
-    private GuestService() {
+    public GuestService() {
         DepInjReflectUtil.initializeDepInjection(this);
     }
 

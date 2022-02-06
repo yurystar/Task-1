@@ -1,7 +1,7 @@
-package com.senla.elhoteladmin.service;
+package com.senla.daoservice.service;
 
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.entity.BookingOrder;
+import com.senla.daoservice.entity.AdditionalService;
+import com.senla.daoservice.entity.BookingOrder;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package com.senla.elhoteladmin.service;
+package com.senla.daoservice.service;
 
-import com.senla.elhoteladmin.configuration.ConfigProperty;
-import com.senla.elhoteladmin.configuration.ConfigUtil;
-import com.senla.elhoteladmin.dao.IRoomRepo;
-import com.senla.elhoteladmin.entity.Room;
+import com.senla.daoservice.configuration.ConfigProperty;
+import com.senla.daoservice.configuration.ConfigUtil;
+import com.senla.daoservice.dao.IRoomRepo;
+import com.senla.daoservice.entity.Room;
 import depinject.DepInjReflectUtil;
 import depinject.DependencyInjection;
 
@@ -13,19 +13,10 @@ public class RoomService implements IRoomService {
     @DependencyInjection
     private IRoomRepo roomRepo;
 
-    private static RoomService instance;
-
-    public static synchronized RoomService getInstance() {
-        if (instance == null) {
-            instance = new RoomService();
-        }
-        return instance;
-    }
-
     @ConfigProperty
     private Boolean roomStatusChange;
 
-    private RoomService() {
+    public RoomService() {
         DepInjReflectUtil.initializeDepInjection(this);
         ConfigUtil.initializeProperties(this);
     }

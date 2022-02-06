@@ -1,7 +1,7 @@
-package com.senla.elhoteladmin.dao;
+package com.senla.daoservice.dao;
 
-import com.senla.elhoteladmin.entity.Room;
-import com.senla.elhoteladmin.entity.RoomStatus;
+import com.senla.daoservice.entity.Room;
+import com.senla.daoservice.entity.RoomStatus;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,7 +12,7 @@ public class RoomDaoImpl implements IRoomRepo {
 
     private List<Room> rooms = new ArrayList<>();
 
-    private RoomDaoImpl() {
+    public RoomDaoImpl() {
     }
 
     @Override

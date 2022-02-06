@@ -1,7 +1,6 @@
-package com.senla.elhoteladmin.dao;
+package com.senla.daoservice.dao;
 
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.entity.Room;
+import com.senla.daoservice.entity.AdditionalService;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,7 +11,7 @@ public class AdditionalServiceDaoImpl implements IAdditionalServiceRepo {
 
     private List<AdditionalService> additionalServices = new ArrayList<>();
 
-    private AdditionalServiceDaoImpl() {
+    public AdditionalServiceDaoImpl() {
     }
 
     @Override

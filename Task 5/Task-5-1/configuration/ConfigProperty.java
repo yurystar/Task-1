@@ -1,4 +1,4 @@
-package com.senla.elhoteladmin.configuration;
+package com.senla.daoservice.configuration;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

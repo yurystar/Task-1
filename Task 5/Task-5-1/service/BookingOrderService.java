@@ -1,8 +1,8 @@
-package com.senla.elhoteladmin.service;
+package com.senla.daoservice.service;
 
-import com.senla.elhoteladmin.dao.IBookingOrderRepo;
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.entity.BookingOrder;
+import com.senla.daoservice.dao.IBookingOrderRepo;
+import com.senla.daoservice.entity.AdditionalService;
+import com.senla.daoservice.entity.BookingOrder;
 import depinject.DepInjReflectUtil;
 import depinject.DependencyInjection;
 
@@ -12,16 +12,7 @@ public class BookingOrderService implements IBookingOrderService {
     @DependencyInjection
     private IBookingOrderRepo bookingOrderRepo;
 
-    private static BookingOrderService instance;
-
-    public static synchronized BookingOrderService getInstance() {
-        if (instance == null) {
-            instance = new BookingOrderService();
-        }
-        return instance;
-    }
-
-    private BookingOrderService() {
+    public BookingOrderService() {
         DepInjReflectUtil.initializeDepInjection(this);
     }
 

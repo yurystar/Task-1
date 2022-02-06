@@ -1,8 +1,8 @@
-package com.senla.elhoteladmin.dao;
+package com.senla.daoservice.dao;
 
-import com.senla.elhoteladmin.configuration.ConfigProperty;
-import com.senla.elhoteladmin.configuration.ConfigUtil;
-import com.senla.elhoteladmin.entity.*;
+import com.senla.daoservice.configuration.ConfigProperty;
+import com.senla.daoservice.configuration.ConfigUtil;
+import com.senla.daoservice.entity.*;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -15,7 +15,7 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
     @ConfigProperty
     private int limitNumGuestsForShow;
 
-    private BookingOrderDaoImpl() {
+    public BookingOrderDaoImpl() {
         ConfigUtil.initializeProperties(this);
     }
 

@@ -1,30 +1,36 @@
-package com.senla.elhoteladmin.serialization;
+package com.senla.daoservice.serialization;
 
-import com.senla.elhoteladmin.dao.AdditionalServiceDaoImpl;
-import com.senla.elhoteladmin.dao.BookingOrderDaoImpl;
-import com.senla.elhoteladmin.dao.GuestDaoImpl;
-import com.senla.elhoteladmin.dao.RoomDaoImpl;
-import com.senla.elhoteladmin.service.AdditionalServiceService;
-import com.senla.elhoteladmin.service.BookingOrderService;
-import com.senla.elhoteladmin.service.GuestService;
-import com.senla.elhoteladmin.service.RoomService;
+import com.senla.daoservice.controller.ActionController;
 
 import java.io.*;
 
 public class WrapperDeserialize {
 
-    public static void deserialize() {
+    private static WrapperDeserialize instance;
 
-        String fileName = ".." + File.separator + "allEntity.ser";
+    public static synchronized WrapperDeserialize getInstance() {
+        if (instance == null) {
+            instance = new WrapperDeserialize();
+        }
+        return instance;
+    }
+
+    private WrapperDeserialize() {
+    }
+
+    public void deserialize() {
+        ActionController adminController = new ActionController();
+        String fileName = "resources" + File.separator + "allEntity.ser";
         File file = new File(fileName);
 
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
 
             Wrapper wrapper = (Wrapper) objectInputStream.readObject();
-            AdditionalServiceService.getInstance().deserializeListAddServ(wrapper.getAdditionalServices());
-            BookingOrderService.getInstance().deserializeListBookingOrder(wrapper.getBookingOrders());
-            GuestService.getInstance().deserializeListGuest(wrapper.getGuests());
-            RoomService.getInstance().deserializeListRoom(wrapper.getRooms());
+
+            adminController.getAdminController().deserializeListAddServ(wrapper.getAdditionalServices());
+            adminController.getAdminController().deserializeListBookingOrder(wrapper.getBookingOrders());
+            adminController.getAdminController().deserializeListGuest(wrapper.getGuests());
+            adminController.getAdminController().deserializeListRoom(wrapper.getRooms());
 
             System.out.println("Данные восстановлены.");
 
@@ -33,7 +39,7 @@ public class WrapperDeserialize {
         } catch (IOException e) {
             System.out.println("IOException exception");
         } catch (ClassNotFoundException e) {
-            System.out.println("class not found exception");
+            System.out.println("class not found exception" + e);
         }
     }
 }
