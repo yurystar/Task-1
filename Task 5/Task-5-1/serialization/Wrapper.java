@@ -1,9 +1,9 @@
-package com.senla.elhoteladmin.serialization;
+package com.senla.daoservice.serialization;
 
-import com.senla.elhoteladmin.entity.AdditionalService;
-import com.senla.elhoteladmin.entity.BookingOrder;
-import com.senla.elhoteladmin.entity.Guest;
-import com.senla.elhoteladmin.entity.Room;
+import com.senla.daoservice.entity.AdditionalService;
+import com.senla.daoservice.entity.BookingOrder;
+import com.senla.daoservice.entity.Guest;
+import com.senla.daoservice.entity.Room;
 
 import java.io.Serializable;
 import java.util.List;

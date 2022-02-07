@@ -1,4 +1,4 @@
-package com.senla.elhoteladmin.entity;
+package com.senla.daoservice.entity;
 
 import java.io.Serializable;
 import java.util.*;
